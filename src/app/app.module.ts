@@ -13,8 +13,6 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { environment } from 'src/environments/environment';
 import { AuthService } from './core/services/user/auth.service';
-import { LoadingComponent } from './loading/loading.component';
-
 
 function initializeAppAuth(authService: AuthService) {
   return (): Promise<any> => {
@@ -22,7 +20,7 @@ function initializeAppAuth(authService: AuthService) {
   };
 }
 @NgModule({
-  declarations: [AppComponent, LoadingComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -35,12 +33,14 @@ function initializeAppAuth(authService: AuthService) {
     MaterialModule,
     ReactiveFormsModule,
   ],
-  providers: [{
-    provide: APP_INITIALIZER,
-    useFactory: initializeAppAuth,
-    deps: [AuthService],
-    multi: true,
-  },],
+  providers: [
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeAppAuth,
+      deps: [AuthService],
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
