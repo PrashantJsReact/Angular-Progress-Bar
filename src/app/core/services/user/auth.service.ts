@@ -78,9 +78,7 @@ export class AuthService {
 
           // console.log('Access Token : ', jwtToken);
           // console.log('Refresh Token : ', auth.refreshToken);
-          setTimeout(() => {
-            resolve();
-          }, 5000);
+          resolve();
         } else {
           this.auth.signOut();
           resolve();

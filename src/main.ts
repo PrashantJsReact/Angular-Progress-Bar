@@ -10,7 +10,6 @@ if (environment.production) {
 
 const loading = document.getElementById('loading');
 if (loading) {
-  console.log(loading)
   loading.style.display = 'block';
 }
 
