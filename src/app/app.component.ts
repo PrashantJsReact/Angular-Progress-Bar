@@ -11,6 +11,7 @@ import {
   Router,
   RoutesRecognized,
 } from '@angular/router';
+import { ConfettiService } from './core/services/confetti/confetti.service';
 
 @Component({
   selector: 'app-root',
@@ -26,7 +27,10 @@ export class AppComponent {
   bufferValue: number = 10;
   isLoading: boolean = true;
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    private confettiService: ConfettiService
+  ) {
     this.subscribeRouterEvent();
   }
 
@@ -60,5 +64,9 @@ export class AppComponent {
   private setProgressBar(value: number, bufferValue: number) {
     this.value = value;
     this.bufferValue = bufferValue;
+  }
+
+  ngAfterViewInit(): void {
+    this.confettiService.fireWorksOnLoad();
   }
 }
